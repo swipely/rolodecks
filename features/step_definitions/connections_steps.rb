@@ -18,5 +18,5 @@ When /^I click login next to my name$/ do
 end
 
 Then /^I see my name in the nav bar$/ do
-  pending # express the regexp above with the code you wish you had
+  page.find('li', :text => @contact.first_name).should be_present
 end
