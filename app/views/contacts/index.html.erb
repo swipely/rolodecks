@@ -7,15 +7,16 @@
       <th><b>Name</b></th>
       <th><b>Email</b></th>
       <th><b>Phone</b></th>
+      <th><b>Login</b></th>
     </tr>
   </thead>
 <% @contacts.each do |c| %>
   <tr>
     <td><%= gravatar_image_tag c.email, gravatar: { size: 25 } %></td>
     <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
-    <td><%= button_to create_session_path(contact_id: c.id) %></td>
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
+    <td><%= button_to 'login', sessions_path(id:c.id) %></td>
   </tr>
 <% end %>
 </table>
