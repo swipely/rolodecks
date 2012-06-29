@@ -12,7 +12,9 @@ When /^I go to the contacts page$/ do
 end
 
 When /^I click login next to my name$/ do
-  pending # express the regexp above with the code you wish you had
+  within('tr', text: @contact.first_name) do
+    click_on 'login'
+  end
 end
 
 Then /^I see my name in the nav bar$/ do
