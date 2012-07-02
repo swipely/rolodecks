@@ -13,4 +13,12 @@ class Contact < ActiveRecord::Base
     num.gsub!(/\D/, '') if num.is_a?(String)
     super(num)
   end
+
+  def connect_to(other)
+    Connection.connect(self, other)
+  end
+  
+  def connected_to?(other)
+    Connection.connected?(self, other)
+  end
 end
