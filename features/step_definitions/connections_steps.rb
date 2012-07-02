@@ -25,9 +25,8 @@ When /^I click the Connect button next to Fred's name$/ do
 end
 
 Then /^The button changes to the text "Connected"$/ do
-  visit contacts_path
-  fred_entry = page.find('...')
-  fred_entry.find('tr', :text => 'Connected').should be_present
+  fred_row = page.find('tr', text: @fred.first_name)
+  fred_row.should have_content 'Connected'
 end
 
 Given /^We are connected$/ do
