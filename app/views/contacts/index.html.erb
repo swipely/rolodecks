@@ -8,6 +8,7 @@
       <th><b>Email</b></th>
       <th><b>Phone</b></th>
       <th><b>Login</b></th>
+      <th><b>Connect</b></th>
     </tr>
   </thead>
 <% @contacts.each do |c| %>
@@ -17,6 +18,7 @@
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
     <td><%= button_to 'login', sessions_path(id:c.id) %></td>
+    <td><%= button_to 'Connect', connections_path(id:c.id) %></td>
   </tr>
 <% end %>
 </table>
