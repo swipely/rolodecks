@@ -21,4 +21,8 @@ class Contact < ActiveRecord::Base
   def connected_to?(other)
     Connection.connected?(self, other)
   end
+  
+  def connections
+    Connection.for_contact(self)
+  end
 end

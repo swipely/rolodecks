@@ -91,32 +91,9 @@ describe Contact do
   end
 
   describe ".connect_to" do
-    let(:me) do
-      Contact.create(
-         email: Random.email,
-         first_name: Random.firstname,
-         last_name: Random.lastname,
-         phone: Random.phone
-       )
-    end
-
-    let(:friend) do
-      Contact.create(
-         email: Random.email,
-         first_name: Random.firstname,
-         last_name: Random.lastname,
-         phone: Random.phone
-       )
-    end
-
-    let(:other) do
-      Contact.create(
-         email: Random.email,
-         first_name: Random.firstname,
-         last_name: Random.lastname,
-         phone: Random.phone
-       )
-    end
+    let(:me) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:friend) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:other) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
 
     before { me.connect_to(friend) }
 
@@ -127,5 +104,17 @@ describe Contact do
     it 'does not create a connection to an unrelated contact' do
       me.connected_to?(other).should be_false
     end
+  end
+  
+  describe ".connections" do
+    let(:me) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:friend) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:other) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+
+    before { me.connect_to(friend) }
+    
+    subject { me.connections }
+    
+    it { should == [friend] }
   end
 end

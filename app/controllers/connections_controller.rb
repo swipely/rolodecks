@@ -1,11 +1,17 @@
 class ConnectionsController < ApplicationController
 
-  def create
-    if session[:contact_id] && params[:id]
-      a = Contact.find(session[:contact_id])
-      b = Contact.find(params[:id])
+  def index
+    if session[:contact_id]
+      @connections = @current_user.connections
+    else
+      head :bad_request
+    end
+  end
 
-      a.connect_to(b)
+  def create
+    if @current_user && params[:id]
+      other = Contact.find(params[:id])
+      @current_user.connect_to(other)
 
       redirect_to contacts_path
     else
