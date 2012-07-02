@@ -1,6 +1,6 @@
 Feature: Identifying my contact
 
-  In order to have a personalized contact list
+  In order to make it possible to have a personalized contact list
   As a well connected individual
   I want to identify myself as one of the contacts in the database
 
