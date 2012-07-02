@@ -3,11 +3,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><b>Pic</b></th>
-      <th><b>Name</b></th>
-      <th><b>Email</b></th>
-      <th><b>Phone</b></th>
-      <th><b>Connect</b></th>
+      <th></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th class="connect">Connected?</th>
     </tr>
   </thead>
 <% @contacts.each do |c| %>
@@ -16,11 +16,13 @@
     <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
+
 <% if @current_user.present? && @current_user.connected_to?(c) %>
-    <td>Connected</td>
+    <td class="connect">✔</td>
 <% else %>
-    <td><%= button_to 'Connect', connections_path(id:c.id) %></td>
+    <td class="connect"><%= button_to 'Connect', connections_path(id:c.id), {class: 'button orange'} %></td>
 <% end %>
+
   </tr>
 <% end %>
 </table>

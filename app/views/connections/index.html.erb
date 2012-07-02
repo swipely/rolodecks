@@ -3,11 +3,11 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><b>Pic</b></th>
-      <th><b>Name</b></th>
-      <th><b>Email</b></th>
-      <th><b>Phone</b></th>
-      <th><b>Inner Circle</b></th>
+      <th></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th class="inner_circle">Inner Circle</th>
     </tr>
   </thead>
 <% @connections.each_with_index do |c, idx| %>
@@ -16,10 +16,12 @@
     <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
+
 <% if idx > (@connections.length / 2.0) %>
-    <td><%= button_to 'Add to Inner Circle', connections_path(id:c.id) %></td>
+    <td class="inner_circle"><%= button_to 'Add to Inner Circle', connections_path(id:c.id), {class: 'button green'} %></td>
 <% else %>
-    <td>Inner Circle</td>
+
+    <td class="inner_circle in_circle">✭</td>
 <% end %>
   </tr>
 <% end %>

@@ -3,23 +3,23 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><b>Pic</b></th>
-      <th><b>Strength</b></th>
-      <th><b>Name</b></th>
-      <th><b>Email</b></th>
-      <th><b>Phone</b></th>
-      <th><b>Connect</b></th>
+      <th></th>
+      <th>Name</th>
+      <th class="strength">Strength</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
     </tr>
   </thead>
 <% strengths = @current_user.connections.map { rand(100) }.sort.reverse %>
 <% @current_user.connections.each_with_index do |c, idx| %>
   <tr>
     <td><%= gravatar_image_tag c.email, gravatar: { size: 25 } %></td>
-    <td><%= strengths[idx] %></td>
     <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
+    <td class="strength"><%= strengths[idx] %></td>
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
-    <td><%= button_to 'Connect', connections_path(id:c.id) %></td>
+    <td class="connect"><%= button_to 'Connect', connections_path(id:c.id), {class: 'button orange'} %></td>
   </tr>
 <% end %>
 </table>
