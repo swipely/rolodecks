@@ -21,6 +21,6 @@ class Connection < ActiveRecord::Base
   
   def self.for_contact(contact)
     connected_contacts = where(:contact1_id => contact.id).map(&:contact2) + where(:contact2_id => contact.id).map(&:contact1)
-    connected_contacts.sort_by(&:id)
+    connected_contacts.select { |c| c.id != contact.id }.sort_by(&:id)
   end
 end
