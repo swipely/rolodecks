@@ -24,7 +24,9 @@
 <% end %>
           </ul>
         </nav>
+<% if @current_user.present? %>
         <div class="logged-in">Logged in as <span class="name"><%= @current_user.first_name %></span></div>
+<% end %>
       </div>
     </div>
   </header>
