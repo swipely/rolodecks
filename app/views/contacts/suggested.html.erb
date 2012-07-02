@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><b>Pic</b></th>
+      <th><b>Strength</b></th>
       <th><b>Name</b></th>
       <th><b>Email</b></th>
       <th><b>Phone</b></th>
@@ -13,10 +14,8 @@
 <% strengths = @current_user.connections.map { rand(100) }.sort.reverse %>
 <% @current_user.connections.each_with_index do |c, idx| %>
   <tr>
-    <td>
-      <%= gravatar_image_tag c.email, gravatar: { size: 25 } %><br/>
-      Strength: <%= strengths[idx] %>
-    </td>
+    <td><%= gravatar_image_tag c.email, gravatar: { size: 25 } %></td>
+    <td><%= strengths[idx] %></td>
     <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
