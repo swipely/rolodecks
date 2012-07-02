@@ -11,6 +11,14 @@ When /^I go to the contacts page$/ do
   visit contacts_path
 end
 
+When /^I click on my name$/ do
+  click_on @contact.first_name
+end
+
+When /^I click login$/ do
+  click_on 'login'
+end
+
 When /^I click login next to my name$/ do
   within('tr', text: @contact.first_name) do
     click_on 'login'

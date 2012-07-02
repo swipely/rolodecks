@@ -7,5 +7,6 @@ Feature: Connections between contacts
   Scenario: Identifying myself
     Given I have a contact record
     When I go to the contacts page
-    And I click login next to my name
+    And I click on my name
+    And I click login
     Then I see my name in the nav bar
