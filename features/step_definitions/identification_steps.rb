@@ -18,5 +18,6 @@ When /^I click login next to my name$/ do
 end
 
 Then /^I see my name in the nav bar$/ do
-  page.find('li', :text => @contact.first_name).should be_present
+  nav_bar = page.find('nav')
+  nav_bar.should have_content @contact.first_name
 end
