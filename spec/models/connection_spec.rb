@@ -8,11 +8,13 @@ describe Connection do
 
   describe ".connect" do
     it 'creates a Connection record in the database' do
-      Connection.exists?(contact1: a.id, contact2: b.id).should be_true
+      Connection.exists?(contact1_id: a.id, contact2_id: b.id).should be_true
     end
   end
 
   describe ".connected?" do
+    let(:c) { Contact.create!(first_name: 'Jane', last_name: 'Jane', email: 'jane@test.com', phone: '555-555-5555') }
+
     it 'returns true when the connection is in the database' do
       Connection.connected?(a, b).should be_true
     end
@@ -22,7 +24,6 @@ describe Connection do
     end
 
     it 'returns false when there is no connection' do
-      let(:c) { Contact.create!(first_name: 'Jane', last_name: 'Jane', email: 'jane@test.com', phone: '555-555-5555') }
       Connection.connected?(b, c).should be_false
     end
   end
