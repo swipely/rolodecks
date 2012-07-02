@@ -89,4 +89,32 @@ describe Contact do
       Contact.all.should == [@contact_newer, @contact_older]
     end
   end
+
+  describe ".connect_to" do
+    let(:me) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:friend) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:other) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+
+    before { me.connect_to(friend) }
+
+    it 'creates a connection to the other contact' do
+      me.connected_to?(friend).should be_true
+    end
+
+    it 'does not create a connection to an unrelated contact' do
+      me.connected_to?(other).should be_false
+    end
+  end
+  
+  describe ".connections" do
+    let(:me) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:friend) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+    let(:other) { Contact.create(email: Random.email, first_name: Random.firstname, last_name: Random.lastname, phone: Random.phone) }
+
+    before { me.connect_to(friend) }
+    
+    subject { me.connections }
+    
+    it { should == [friend] }
+  end
 end
