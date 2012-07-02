@@ -1,0 +1,26 @@
+<h1>Suggested Contacts</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><b>Pic</b></th>
+      <th><b>Name</b></th>
+      <th><b>Email</b></th>
+      <th><b>Phone</b></th>
+      <th><b>Connect</b></th>
+    </tr>
+  </thead>
+<% strengths = @current_user.connections.map { rand(100) }.sort.reverse %>
+<% @current_user.connections.each_with_index do |c, idx| %>
+  <tr>
+    <td>
+      <%= gravatar_image_tag c.email, gravatar: { size: 25 } %><br/>
+      Strength: <%= strengths[idx] %>
+    </td>
+    <td><%= link_to "#{c.first_name} #{c.last_name}", c %></td>
+    <td><%= c.email %></td>
+    <td><%= number_to_phone(c.phone) %></td>
+    <td><%= button_to 'Connect', connections_path(id:c.id) %></td>
+  </tr>
+<% end %>
+</table>

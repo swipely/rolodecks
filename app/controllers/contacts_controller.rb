@@ -1,5 +1,9 @@
 class ContactsController < ApplicationController
 
+  def suggested
+    
+  end
+
   def index
     @contacts = Contact.all
   end

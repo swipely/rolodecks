@@ -20,7 +20,8 @@
             <li><%= link_to "New", new_contact_url %></li>
 <% if @current_user.present? %>
             <li><%= link_to "My Connections", connections_url %></li>
-            <li>hello <%= @current_user.first_name %></li>
+            <li><%= link_to "Suggested Contacts", suggested_contacts_url %></li>
+            <li>Logged in as <%= @current_user.first_name %></li>
 <% end %>
           </ul>
         </nav>
