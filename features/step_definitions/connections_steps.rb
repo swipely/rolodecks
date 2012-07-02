@@ -12,6 +12,8 @@ Given /^There is a contact record for Fred$/ do
   @fred.last_name = 'Fred'
   @fred.phone = '555-555-5555'
   @fred.save!
+  
+  login_as(@me)
 end
 
 Given /^We are not connected$/ do

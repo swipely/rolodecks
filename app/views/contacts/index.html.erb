@@ -18,7 +18,11 @@
     <td><%= c.email %></td>
     <td><%= number_to_phone(c.phone) %></td>
     <td><%= button_to 'login', sessions_path(id:c.id) %></td>
+<% if @current_user.present? && @current_user.connected_to?(c) %>
+    <td>Connected</td>
+<% else %>
     <td><%= button_to 'Connect', connections_path(id:c.id) %></td>
+<% end %>
   </tr>
 <% end %>
 </table>
