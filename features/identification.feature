@@ -1,8 +1,8 @@
-Feature: Connections between contacts
+Feature: Identifying my contact
 
-  In order to have my own contact list
+  In order to have a personalized contact list
   As a well connected individual
-  I want to add my own connections
+  I want to identify myself as one of the contacts in the database
 
   Scenario: Identifying myself
     Given I have a contact record
