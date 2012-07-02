@@ -5,17 +5,14 @@ Feature: Adding weights to a connection
   I want to organize my connections by how close I am to them
 
   Scenario: Categorizing a contact as being in my inner circle
-    Given I am identified as a contact
-    And There is a contact record for Fred
-    And I am connected to Fred
+    Given I am connected to Fred
     When I go to the My Connections page
     And I click the Inner Circle button next to Fred
     Then The button next to Fred is replaced with the text "Is in my Inner Circle"
 
   Scenario: Sorting contacts with those in the Inner Circle at the top
-    Given I am identified as a contact
+    Given I am connected to Fred
     And Fred is in my Inner Circle
     And Joe is not in my Inner Circle
     When I go to the My Connections page
-    And I click the Inner Circle button next to Fred
     And The contact for Fred should be above the contact for Joe

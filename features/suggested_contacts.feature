@@ -5,15 +5,13 @@ Feature: Showing suggested contacts
   I want to see contacts in Rolodecks who I might know but am not yet connected to
 
   Scenario: Contacts with connections in common should be suggested to each other
-    Given I am logged in
-    And I am connected to Joe
+    Given I am connected to Joe
     And Dana is connected to Joe
     When I go to the Suggested Contacts page
     Then I see Dana in the list
 
   Scenario: Suggested contacts through a contact are ordered by being in the Inner Circle
-    Given I am logged in
-    And Joe is in my Inner Circle
+    Given Joe is in my Inner Circle
     And Dana is in Joe's Inner Circle
     And Chris is connected to Joe
     When I go to the Suggested Contacts page
@@ -21,7 +19,7 @@ Feature: Showing suggested contacts
     And I see Chris at the bottom of the list
 
   Scenario: Contacts who are not connected through any of my connections are not suggested
-    Given I am logged in
-    And Tom is connected to Jerry
+    Given Tom is connected to Jerry
+    And I am not connected to Tom or Jerry
     When I go to the Suggested Contacts page
     Then I do not see Tom or Jerry in the suggested users list
